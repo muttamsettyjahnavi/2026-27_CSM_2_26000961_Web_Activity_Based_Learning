@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMart - Electronic Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fc;
+            color: #222;
+        }
+
+        /* Header */
+        header {
+            background: #102b50;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 29px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffb703;
+        }
+
+        .search-box input {
+            width: 280px;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .header-link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 17px;
+            text-align: center;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #102b50;
+            margin: 0 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e76f00;
+        }
+
+        /* Hero Banner */
+        .hero {
+            width: 90%;
+            min-height: 300px;
+            margin: 25px auto;
+            padding: 40px;
+            background: linear-gradient(120deg, #102b50, #2878bd);
+            color: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .hero-icon {
+            font-size: 110px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffb703;
+            color: #102b50;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: white;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: #102b50;
+            margin: 40px 0 25px;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            padding: 0 5%;
+        }
+
+        .category {
+            width: 160px;
+            background: white;
+            padding: 22px 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 12px #dce3ec;
+            transition: transform 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-6px);
+        }
+
+        .category-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        /* Product Grid */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+            padding: 0 5%;
+        }
+
+        .product-card {
+            position: relative;
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 12px #dce3ec;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .product-image {
+            height: 155px;
+            background: #edf3fb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 78px;
+            margin-bottom: 15px;
+        }
+
+        .discount {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e63946;
+            color: white;
+            font-size: 12px;
+            padding: 6px 8px;
+            border-radius: 5px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .rating {
+            color: #e5a000;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: #16834a;
+            font-size: 21px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .old-price {
+            color: #999;
+            font-size: 13px;
+            text-decoration: line-through;
+        }
+
+        .buy-btn {
+            display: block;
+            background: #102b50;
+            color: white;
+            padding: 11px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .buy-btn:hover {
+            background: #e76f00;
+        }
+
+        /* Offer Section */
+        .offer {
+            margin: 40px 5%;
+            background: #fff0cb;
+            padding: 35px 20px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .offer h2 {
+            color: #a85200;
+            margin-bottom: 15px;
+        }
+
+        .offer p {
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        /* Services */
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            padding: 0 5% 35px;
+        }
+
+        .service {
+            width: 250px;
+            padding: 22px;
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #dce3ec;
+        }
+
+        .service-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .service p {
+            color: #666;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background: #102033;
+            color: white;
+            padding: 35px 7% 15px;
+            margin-top: 35px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        footer h3 {
+            color: #ffb703;
+            margin-bottom: 14px;
+        }
+
+        footer p, footer a {
+            color: #ddd;
+            text-decoration: none;
+            line-height: 1.9;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #526176;
+            margin-top: 25px;
+            padding-top: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            header {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-icon {
+                font-size: 75px;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="home">
+        <div class="logo">Electro<span>Mart</span> ⚡</div>
+
+        <div class="search-box">
+            <input type="search"
+                   placeholder="Search electronic products...">
+        </div>
+
+        <a href="#products" class="header-link">Explore Products</a>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#offers">Offers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Upgrade Your Digital World!</h1>
+            <p>
+                Discover the latest electronic gadgets.<br>
+                Amazing quality, exciting prices and great deals.
+            </p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+
+        <div class="hero-icon">💻📱</div>
+    </section>
+
+    <!-- Categories -->
+    <h2 class="section-title" id="categories">
+        Shop By Category
+    </h2>
+
+    <section class="categories">
+
+        <div class="category">
+            <div class="category-icon">📱</div>
+            <h3>Mobiles</h3>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">💻</div>
+            <h3>Laptops</h3>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🎧</div>
+            <h3>Headphones</h3>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">⌚</div>
+            <h3>Smart Watches</h3>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📷</div>
+            <h3>Cameras</h3>
+        </div>
+
+    </section>
+
+    <!-- Products -->
+    <h2 class="section-title" id="products">
+        Featured Electronic Products
+    </h2>
+
+    <section class="products">
+
+        <div class="product-card">
+            <span class="discount">20% OFF</span>
+            <div class="product-image">📱</div>
+            <h3>Smartphone</h3>
+            <p class="description">
+                Powerful smartphone with modern features.
+            </p>
+            <p class="rating">★★★★★ 4.8</p>
+            <p class="price">₹14,999</p>
+            <p class="old-price">₹18,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">15% OFF</span>
+            <div class="product-image">💻</div>
+            <h3>Laptop</h3>
+            <p class="description">
+                High-performance laptop for work and study.
+            </p>
+            <p class="rating">★★★★★ 4.7</p>
+            <p class="price">₹49,999</p>
+            <p class="old-price">₹58,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">25% OFF</span>
+            <div class="product-image">🎧</div>
+            <h3>Wireless Headphones</h3>
+            <p class="description">
+                Enjoy clear sound and comfortable listening.
+            </p>
+            <p class="rating">★★★★★ 4.6</p>
+            <p class="price">₹1,499</p>
+            <p class="old-price">₹1,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">10% OFF</span>
+            <div class="product-image">⌚</div>
+            <h3>Smart Watch</h3>
+            <p class="description">
+                Stylish smartwatch with smart features.
+            </p>
+            <p class="rating">★★★★☆ 4.5</p>
+            <p class="price">₹2,699</p>
+            <p class="old-price">₹2,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">12% OFF</span>
+            <div class="product-image">📷</div>
+            <h3>Digital Camera</h3>
+            <p class="description">
+                Capture memorable moments in high quality.
+            </p>
+            <p class="rating">★★★★★ 4.8</p>
+            <p class="price">₹29,999</p>
+            <p class="old-price">₹33,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">20% OFF</span>
+            <div class="product-image">🔊</div>
+            <h3>Bluetooth Speaker</h3>
+            <p class="description">
+                Portable speaker with powerful sound.
+            </p>
+            <p class="rating">★★★★☆ 4.4</p>
+            <p class="price">₹1,999</p>
+            <p class="old-price">₹2,499</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">15% OFF</span>
+            <div class="product-image">⌨️</div>
+            <h3>Gaming Keyboard</h3>
+            <p class="description">
+                A comfortable keyboard for gaming and typing.
+            </p>
+            <p class="rating">★★★★☆ 4.5</p>
+            <p class="price">₹1,699</p>
+            <p class="old-price">₹1,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="discount">10% OFF</span>
+            <div class="product-image">🖥️</div>
+            <h3>Computer Monitor</h3>
+            <p class="description">
+                A clear display for work, study and entertainment.
+            </p>
+            <p class="rating">★★★★★ 4.7</p>
+            <p class="price">₹10,799</p>
+            <p class="old-price">₹11,999</p>
+            <a href="#contact" class="buy-btn">Buy Now</a>
+        </div>
+
+    </section>
+
+    <!-- Special Offers -->
+    <section class="offer" id="offers">
+        <h2>⚡ Mega Electronics Sale!</h2>
+        <p>
+            Discover exciting deals on your favourite gadgets.
+            Upgrade your technology at affordable prices.
+        </p>
+        <a href="#products" class="btn">Explore Deals</a>
+    </section>
+
+    <!-- Services -->
+    <h2 class="section-title">Why Choose ElectroMart?</h2>
+
+    <section class="services">
+
+        <div class="service">
+            <div class="service-icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Convenient delivery right to your doorstep.</p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">🛡️</div>
+            <h3>Quality Products</h3>
+            <p>Discover quality gadgets for everyday needs.</p>
+        </div>
+
+        <div class="service">
+            <div class="service-icon">💳</div>
+            <h3>Easy Shopping</h3>
+            <p>A clean and simple interface to explore products.</p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+
+        <div class="footer-content">
+
+            <div>
+                <h3>ElectroMart ⚡</h3>
+                <p>Your one-stop electronic shopping destination.</p>
+                <p>Technology made simple.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#categories">Categories</a></p>
+                <p><a href="#products">Products</a></p>
+                <p><a href="#offers">Offers</a></p>
+            </div>
+
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: support@electromart.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 ElectroMart. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+</html>

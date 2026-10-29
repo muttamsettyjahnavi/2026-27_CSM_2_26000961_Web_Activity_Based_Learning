@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub - Online Food Ordering</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf5;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #e94e1b;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffe08a;
+        }
+
+        .search-box input {
+            padding: 12px;
+            width: 260px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            text-align: center;
+            padding: 17px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e94e1b;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin: 25px auto;
+            width: 90%;
+            min-height: 300px;
+            padding: 40px;
+            background: linear-gradient(120deg, #fff0d5, #ffd0a3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .hero h1 {
+            color: #c53c12;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            font-size: 120px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e94e1b;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #b8320c;
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: #c53c12;
+            margin: 40px 0 25px;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            padding: 0 5%;
+        }
+
+        .category {
+            width: 150px;
+            padding: 22px 15px;
+            background: white;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #e6d8cf;
+            transition: transform 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-6px);
+        }
+
+        .category .icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        /* Food Menu */
+        .food-menu {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+            padding: 0 7%;
+        }
+
+        .food-card {
+            position: relative;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            text-align: center;
+            padding: 18px;
+            box-shadow: 0 4px 14px #e5d8ce;
+            transition: transform 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .food-image {
+            height: 175px;
+            background: #fff2e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 85px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #e94e1b;
+            color: white;
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+        }
+
+        .food-card h3 {
+            font-size: 21px;
+            margin: 10px 0;
+        }
+
+        .description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .rating {
+            color: #e99b00;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #198754;
+            margin: 12px 0;
+        }
+
+        .order-btn {
+            display: block;
+            background: #e94e1b;
+            color: white;
+            text-decoration: none;
+            padding: 11px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .order-btn:hover {
+            background: #b8320c;
+        }
+
+        /* Special Offer */
+        .offer {
+            margin: 45px 5%;
+            background: #ffe6b8;
+            padding: 35px 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .offer h2 {
+            color: #c53c12;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .offer p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Delivery Information */
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 10px 5% 35px;
+        }
+
+        .service {
+            background: white;
+            padding: 22px;
+            border-radius: 10px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 3px 10px #e5d8ce;
+        }
+
+        .service .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        footer {
+            background: #292522;
+            color: white;
+            padding: 35px 7% 15px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        footer h3 {
+            color: #ffb26b;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+            line-height: 1.9;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #666;
+            margin-top: 25px;
+            padding-top: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 850px) {
+            .food-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            header {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .food-menu {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero-image {
+                font-size: 80px;
+            }
+
+            .search-box input {
+                width: 100%;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="home">
+        <div class="logo">Foodie<span>Hub</span> 🍴</div>
+
+        <div class="search-box">
+            <input type="search"
+                   placeholder="Search your favourite food...">
+        </div>
+
+        <div>
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#menu">Food Menu</a>
+        <a href="#offers">Offers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div>
+            <h1>Delicious Food,<br>Delivered With Love!</h1>
+
+            <p>
+                Explore your favourite meals.<br>
+                Fresh ingredients, great taste and exciting offers.
+            </p>
+
+            <a href="#menu" class="btn">Order Your Food</a>
+        </div>
+
+        <div class="hero-image">🍕🍔</div>
+    </section>
+
+    <!-- Categories -->
+    <h2 class="section-title" id="categories">
+        Explore Food Categories
+    </h2>
+
+    <section class="categories">
+
+        <div class="category">
+            <div class="icon">🍕</div>
+            <h3>Pizza</h3>
+        </div>
+
+        <div class="category">
+            <div class="icon">🍔</div>
+            <h3>Burgers</h3>
+        </div>
+
+        <div class="category">
+            <div class="icon">🍛</div>
+            <h3>Biryani</h3>
+        </div>
+
+        <div class="category">
+            <div class="icon">🍰</div>
+            <h3>Desserts</h3>
+        </div>
+
+        <div class="category">
+            <div class="icon">🥤</div>
+            <h3>Drinks</h3>
+        </div>
+
+    </section>
+
+    <!-- Food Menu -->
+    <h2 class="section-title" id="menu">
+        Our Popular Menu
+    </h2>
+
+    <section class="food-menu">
+
+        <div class="food-card">
+            <span class="tag">BEST SELLER</span>
+            <div class="food-image">🍕</div>
+            <h3>Cheese Pizza</h3>
+            <p class="description">
+                Delicious pizza topped with cheese and vegetables.
+            </p>
+            <p class="rating">★★★★★ 4.8</p>
+            <p class="price">₹249</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+        <div class="food-card">
+            <span class="tag">POPULAR</span>
+            <div class="food-image">🍔</div>
+            <h3>Classic Burger</h3>
+            <p class="description">
+                Crispy patty with fresh vegetables and sauces.
+            </p>
+            <p class="rating">★★★★★ 4.7</p>
+            <p class="price">₹149</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+        <div class="food-card">
+            <span class="tag">SPECIAL</span>
+            <div class="food-image">🍛</div>
+            <h3>Chicken Biryani</h3>
+            <p class="description">
+                Aromatic basmati rice with delicious spices.
+            </p>
+            <p class="rating">★★★★★ 4.9</p>
+            <p class="price">₹299</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+        <div class="food-card">
+            <div class="food-image">🍜</div>
+            <h3>Veg Noodles</h3>
+            <p class="description">
+                Tasty noodles cooked with fresh vegetables.
+            </p>
+            <p class="rating">★★★★☆ 4.5</p>
+            <p class="price">₹179</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+        <div class="food-card">
+            <span class="tag">NEW</span>
+            <div class="food-image">🍰</div>
+            <h3>Chocolate Cake</h3>
+            <p class="description">
+                Soft chocolate cake for your sweet cravings.
+            </p>
+            <p class="rating">★★★★★ 4.8</p>
+            <p class="price">₹199</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+        <div class="food-card">
+            <div class="food-image">🥤</div>
+            <h3>Cold Coffee</h3>
+            <p class="description">
+                Refreshing chilled coffee with a creamy taste.
+            </p>
+            <p class="rating">★★★★☆ 4.6</p>
+            <p class="price">₹99</p>
+            <a href="#contact" class="order-btn">Order Now</a>
+        </div>
+
+    </section>
+
+    <!-- Special Offer -->
+    <section class="offer" id="offers">
+        <h2>🎉 Special Offer - 20% OFF!</h2>
+        <p>
+            Make your meals more exciting with our special food offers.
+            Enjoy delicious food at affordable prices.
+        </p>
+        <a href="#menu" class="btn">Explore Deals</a>
+    </section>
+
+    <!-- Services -->
+    <h2 class="section-title">Why Choose FoodieHub?</h2>
+
+    <section class="services">
+
+        <div class="service">
+            <div class="icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Enjoy convenient food delivery to your doorstep.</p>
+        </div>
+
+        <div class="service">
+            <div class="icon">🥗</div>
+            <h3>Fresh Food</h3>
+            <p>Enjoy tasty meals made with fresh ingredients.</p>
+        </div>
+
+        <div class="service">
+            <div class="icon">💰</div>
+            <h3>Best Prices</h3>
+            <p>Discover delicious food at affordable prices.</p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+
+        <div class="footer-content">
+
+            <div>
+                <h3>FoodieHub 🍴</h3>
+                <p>Your favourite food, just a click away.</p>
+                <p>Good food. Great mood.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#categories">Categories</a></p>
+                <p><a href="#menu">Food Menu</a></p>
+                <p><a href="#offers">Offers</a></p>
+            </div>
+
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: support@foodiehub.com</p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Location: India</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 FoodieHub. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</body>
+</html>
